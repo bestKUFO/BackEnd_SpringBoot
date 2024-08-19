@@ -7,19 +7,20 @@ import com.restapi.emp.entity.Department;
 import com.restapi.emp.repository.DepartmentRepository;
 import com.restapi.emp.service.DepartmentService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-//@AllArgsConstructor
+@RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
-
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
-        this.departmentRepository = departmentRepository;
-    }
-
     private final DepartmentRepository departmentRepository;
+//    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
+//        this.departmentRepository = departmentRepository;
+//    }
 
     @Override
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
@@ -30,9 +31,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentDto getDepartmentById(Long departmentId) {
+//        Optional<Department> optionalDepartment = departmentRepository.findById(departmentId);
+//        Department department = optional.orElseThrow(
+//                () -> new ResourceNotFoundException("Department is not exists with a given id: " + departmentId));
+
+        String errMsg = String.format("Department is not exists with a given id: %s",departmentId);
         Department department = departmentRepository.findById(departmentId)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Department is not exists with a given id: " + departmentId)
+                        new ResourceNotFoundException(errMsg, HttpStatus.NOT_FOUND)
         );
         return DepartmentMapper.mapToDepartmentDto(department);
     }

@@ -4,6 +4,7 @@ import com.restapi.emp.entity.Department;
 import com.restapi.emp.entity.Employee;
 import com.restapi.emp.repository.DepartmentRepository;
 import com.restapi.emp.repository.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,17 +15,15 @@ import java.util.List;
 
 @Component
 @Profile("prod")
+@RequiredArgsConstructor
 public class EmpDepInsertRunner implements ApplicationRunner {
-    //    @Autowired
     final DepartmentRepository departmentRepository;
-
-    //@Autowired
     final EmployeeRepository employeeRepository;
 
-    public EmpDepInsertRunner(DepartmentRepository departmentRepository, EmployeeRepository employeeRepository) {
-        this.departmentRepository = departmentRepository;
-        this.employeeRepository = employeeRepository;
-    }
+//    public EmpDepInsertRunner(DepartmentRepository departmentRepository, EmployeeRepository employeeRepository) {
+//        this.departmentRepository = departmentRepository;
+//        this.employeeRepository = employeeRepository;
+//    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
