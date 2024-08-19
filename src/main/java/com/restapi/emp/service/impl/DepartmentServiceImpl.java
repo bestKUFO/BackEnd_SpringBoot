@@ -39,7 +39,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department department = departmentRepository.findById(departmentId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(errMsg, HttpStatus.NOT_FOUND)
-        );
+                );
         return DepartmentMapper.mapToDepartmentDto(department);
     }
 
@@ -49,8 +49,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departments.stream()
                 .map(DepartmentMapper::mapToDepartmentDto)
                 .toList();
-                //.map((department) -> DepartmentMapper.mapToDepartmentDto(department))
-                //.collect(Collectors.toList());
+        //.map((department) -> DepartmentMapper.mapToDepartmentDto(department))
+        //.collect(Collectors.toList());
     }
 
     @Override
@@ -58,7 +58,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department department = departmentRepository.findById(departmentId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Department is not exists with a given id:"+ departmentId)
-        );
+                );
 
         department.setDepartmentName(updatedDepartment.getDepartmentName());
         department.setDepartmentDescription(updatedDepartment.getDepartmentDescription());
@@ -73,7 +73,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.findById(departmentId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Department is not exists with a given id: " + departmentId)
-        );
+                );
 
         departmentRepository.deleteById(departmentId);
     }
