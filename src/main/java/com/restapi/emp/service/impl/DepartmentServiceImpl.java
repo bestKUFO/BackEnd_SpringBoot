@@ -9,11 +9,17 @@ import com.restapi.emp.service.DepartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private DepartmentRepository departmentRepository;
+    public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
+        this.departmentRepository = departmentRepository;
+    }
+
+    private final DepartmentRepository departmentRepository;
 
     @Override
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
